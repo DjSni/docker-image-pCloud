@@ -38,4 +38,4 @@ then
 fi
 
 echo "Starting pCloud Daemon"
-exec /usr/bin/pcloudcc --username ${PCLOUD_USER} --mountpoint ${PCLOUD_MOUNT} -d
+exec /usr/bin/pcloudcc --username ${PCLOUD_USER} --mountpoint ${PCLOUD_MOUNT}
