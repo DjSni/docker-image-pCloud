@@ -11,3 +11,8 @@ Recommended Variables:
 | Variable | Default | Value | Descrption |
 | --- | --- | --- | --- |
 | PCLOUD_USER | email@example.com | your email | You need to set your pcloud email |
+| PCLOUD_MOUNT | /data | /your/path | |
+| PCLOUD_2FA | | your 2FA | |
+| PCLOUD_CRYPT | | your Crypt Pass | |
+| USER | nobody | root | |
+| GROUP | users | root | |
