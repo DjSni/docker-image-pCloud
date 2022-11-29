@@ -37,18 +37,6 @@ jobs:
     - name: Commit if not the same
       if: ${{ env.REMOTE_COMMIT_HASH != env.SAVED_COMMIT_HASH }}
       run: echo "${{ env.REMOTE_COMMIT_HASH }}" > main/dependencies/console-client-commit
-    - name: Commit changes an push it to remote
-      if: ${{ env.REMOTE_COMMIT_HASH != env.SAVED_COMMIT_HASH }}
-      uses: actions-x/commit@v6
-      with:
-        email: 41898282+github-actions[bot]@users.noreply.github.com
-        name: GitHub Actions
-        branch: master
-        files: dependencies/console-client-commit
-        repository: https://github.com/DjSni/docker-image-pCloud
-        token: ${{ secrets.GITHUB_TOKEN }}
-        force: false
-        directory: main/
 # Build the new way (Docker) 
     - name: Set up QEMU
       if: ${{ env.REMOTE_COMMIT_HASH != env.SAVED_COMMIT_HASH }}
@@ -69,3 +57,16 @@ jobs:
         push: true
         tags: dersni/docker-image-pcloud:${{env.REMOTE_VERSION}}.${{ github.run_number }}-${{env.REMOTE_COMMIT_HASH}}, dersni/docker-image-pcloud:latest
         context: main/
+# If all done, commit changes
+    - name: Commit changes an push it to remote
+      if: ${{ env.REMOTE_COMMIT_HASH != env.SAVED_COMMIT_HASH }}
+      uses: actions-x/commit@v6
+      with:
+        email: 41898282+github-actions[bot]@users.noreply.github.com
+        name: GitHub Actions
+        branch: master
+        files: dependencies/console-client-commit
+        repository: https://github.com/DjSni/docker-image-pCloud
+        token: ${{ secrets.GITHUB_TOKEN }}
+        force: false
+        directory: main/
