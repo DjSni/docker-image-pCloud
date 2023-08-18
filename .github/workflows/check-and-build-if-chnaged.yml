@@ -71,7 +71,8 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        platforms: linux/amd64,linux/arm/v7,linux/arm64
+        platforms: linux/amd64
+        #,linux/arm/v7,linux/arm64
         tags: dersni/docker-image-pcloud:${{env.REMOTE_VERSION}}.${{ github.run_number }}-${{env.REMOTE_COMMIT_HASH}}, dersni/docker-image-pcloud:latest
         context: main/
 # If all done, commit changes
