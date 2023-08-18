@@ -95,7 +95,7 @@ jobs:
         email: 41898282+github-actions[bot]@users.noreply.github.com
         name: GitHub Actions
         branch: master
-        files: dependencies/dependencies/last-commit
+        files: dependencies/last-commit
         repository: https://github.com/DjSni/docker-image-pCloud
         token: ${{ secrets.GITHUB_TOKEN }}
         force: false
