@@ -23,7 +23,8 @@ jobs:
     - name: Set ENV variables
       run: |
         echo "REMOTE_COMMIT_HASH=$(git -C remote rev-parse --short HEAD)" >> $GITHUB_ENV
-        echo "SAVED_COMMIT_HASH=$(cat main/dependencies/console-client-commit)" >> $GITHUB_ENV
+        echo "LOCAL_COMMIT_HASH=$(git -C main rev-parse --short HEAD)" >> $GITHUB_ENV
+        echo "SAVED_COMMIT_HASH=$(cat dependencies/console-client-commit)" >> $GITHUB_ENV
         echo "LATST_COMMIT_HASH=$(cat dependencies/last-commit)" >> $GITHUB_ENV
         echo "REMOTE_VERSION=$(grep -rn 'remote/pCloudCC/main.cpp' -e 'version = "' | grep -Po 'version = "\K[^"]*')" >> $GITHUB_ENV
     - name: echo Remote
@@ -35,7 +36,7 @@ jobs:
     - name: echo Version
       run: echo ${{env.REMOTE_VERSION}}
     - name: Update last commit
-      run: echo "${{ env.COMMIT_HASH }}" > dependencies/last-commit
+      run: echo "${{ env.LOCAL_COMMIT_HASH }}" > main/dependencies/last-commit
     - name: Exit if same hash
       if: ${{ env.REMOTE_COMMIT_HASH == env.SAVED_COMMIT_HASH }}
       run: echo "The same hash - it's time to shine :)"
