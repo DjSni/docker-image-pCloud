@@ -77,25 +77,12 @@ jobs:
         context: main/
 # If all done, commit changes
     - name: Commit changes an push it to remote
-      if: ${{ env.REMOTE_COMMIT_HASH != env.SAVED_COMMIT_HASH }}
       uses: actions-x/commit@v6
       with:
         email: 41898282+github-actions[bot]@users.noreply.github.com
         name: GitHub Actions
         branch: master
-        files: dependencies/console-client-commit
-        repository: https://github.com/DjSni/docker-image-pCloud
-        token: ${{ secrets.GITHUB_TOKEN }}
-        force: false
-        directory: main/
-    - name: Commit changes an push it to remote
-      if: ${{ env.LOCAL_COMMIT_HASH != env.LAST_COMMIT_HASH }}
-      uses: actions-x/commit@v6
-      with:
-        email: 41898282+github-actions[bot]@users.noreply.github.com
-        name: GitHub Actions
-        branch: master
-        files: dependencies/last-commit
+        files: dependencies/.
         repository: https://github.com/DjSni/docker-image-pCloud
         token: ${{ secrets.GITHUB_TOKEN }}
         force: false
